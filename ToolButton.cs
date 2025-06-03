@@ -18,16 +18,6 @@ namespace TQ_RNGModCreator
         public abstract Predicate<TQObject> GetObjectPredicate { get; }
         public abstract Predicate<string> GetFilePathPredicate { get; }
 
-        public void DoAction()
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Action();
-            stopwatch.Stop();
-
-            //Debug.Log("Everything Took: " + stopwatch.ElapsedMilliseconds + " Miliseconds or " + stopwatch.ElapsedMilliseconds / 1000 + " Seconds");
-        }
-
         public string GetInput()
         {
             return Save.Instance.InputCommand;
@@ -48,6 +38,6 @@ namespace TQ_RNGModCreator
             FileManager.WriteCopy(Save.Instance.GetOutputPath(), list);
         }
 
-        protected abstract void Action();
+        //protected abstract void Action();
     }
 }

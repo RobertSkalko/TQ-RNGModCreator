@@ -1,0 +1,7 @@
+prefixRandomizerChance,100.000000,
+suffixRandomizerChance,100.000000,
+brokenRandomizerChance,25.000000,
+noPrefixNoSuffix,0,
+suffixOnly,6,
+prefixOnly,6,
+bothPrefixSuffix,3,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,19 @@ namespace TQ_RNGModCreator
 {
     public class TQObject : IEquatable<TQObject>, IComparable<TQObject>
     {
+
+        public void suffixFilename(String suffix)
+        {
+            String old = FilePath;
+
+            FilePath = FilePath.Replace(".dbr", suffix + ".dbr"); // todo does the name contain dbr
+            if (FilePath.Equals(old))
+            {
+                throw new Exception("AA");
+            }
+
+        }
+
         public bool Equals(TQObject other)
         {
             return this.FilePath
@@ -17,6 +31,31 @@ namespace TQ_RNGModCreator
         public bool hasCost()
         {
             return Dict.ContainsKey("itemCost");
+        }
+        public int firstFreeNumberedIndexOf(Func<int, string> keyname, int max)
+        {
+            for (int i = 1; i < max; i++)
+            {
+                String key = keyname.Invoke(i);
+
+                if (Dict.ContainsKey(key))
+                {
+
+                    if (Dict[key].Length == 0)
+                    {
+                        return i;
+                    }
+                }
+                else
+                {
+                    if (i < max)
+                    {
+                        return i;
+                    }
+                }
+
+            }
+            return -1;
         }
 
         public string getCost()

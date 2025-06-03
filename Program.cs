@@ -2,6 +2,5 @@
 using TQ_RNGModCreator;
 
 Console.WriteLine("Hello, World!");
-new ToolTQAELegendaryAffixes().DoAction();
-new ToolTQUniquesShowAffixes().DoAction();
-
+new ToolTQAELegendaryAffixes().Action(new ToolTQAELegendaryAffixes.Config());
+new ToolBiggerPotionCd().Action();

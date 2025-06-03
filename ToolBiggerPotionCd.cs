@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace TQ_RNGModCreator
 {
-    public class ToolTQUniquesShowAffixes : ToolButton
+
+    public class ToolBiggerPotionCd : ToolButton
     {
-        public override string Name { get => "ToolTQUniquesShowAffixes"; }
+        public override string Name { get => "ToolBiggerPotionCd"; }
         public override string Description { get; }
 
         public override Predicate<TQObject> GetObjectPredicate
         {
             get =>
-            new Predicate<TQObject>(x => x.isUnique() && x.Dict.ContainsKey("hidePrefixName") && x.Dict.ContainsKey("hideSuffixName"));
+            new Predicate<TQObject>(x => x.HasTemplate() && x.GetTemplate().ToLower().Contains("potion") && x.Dict.ContainsKey("useDelayTime"));
         }
 
         public override Predicate<string> GetFilePathPredicate
@@ -29,8 +30,8 @@ namespace TQ_RNGModCreator
             ConcurrentBag<TQObject> list = GetAllObjects(Save.Instance.GetRecordsPath());
             foreach (TQObject obj in list)
             {
-                obj.Dict["hidePrefixName"] = "0";
-                obj.Dict["hideSuffixName"] = "0";
+                // we up potion cd from 6 seconds to 60
+                obj.Dict["useDelayTime"] = "60.0";
             }
             FileManager.WriteCopy(Save.Instance.GetOutputPath(), list);
         }
